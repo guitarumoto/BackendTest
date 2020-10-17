@@ -1,10 +1,11 @@
 const getBooks = require('../functions/getBooks.js')
+const orderBy = require('../functions/orderBy.js')
+const frete = require('../functions/frete.js')
 
 module.exports = {
     async especificacao(request, response){
         const resultado = getBooks.getBooks();
         const parametro = request.body;
-        var cont = 0
         var result = []
         resultado.map(book => {
             if(parametro['originally_published']){
@@ -41,6 +42,15 @@ module.exports = {
                 }
             }
         })
-        return response.json(result)
+           if(parametro['order'] === 'asc'){
+               return response.json(orderBy.orderbyasc(result))
+           }else if(parametro['order'] === 'desc'){
+              return response.json(orderBy.orderbydesc(result))
+          }
+},
+    async calculaFrete(request, response){
+        const listalivros = getBooks.getBooks();
+        return response.json(frete.calculo(listalivros))
+        
     }
 }
