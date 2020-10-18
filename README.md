@@ -27,7 +27,7 @@ http://localhost:3001/-enpoint-
 Para realizar uma busca de livro pela suas especificações, no corpo da requisição insira se quer a lista em ASC ou DESC, em seguida a especificação e a palavra que deseja buscar. Exemplo de corpo de requisição:
 ```
 {
-	"order" : "asc",
+	"order" : "desc",
 	"genres": "Adventure fiction"
 }
 ```
